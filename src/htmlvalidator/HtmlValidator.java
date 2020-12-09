@@ -9,7 +9,7 @@ import java.util.Queue;
 
 /**
  *
- * @author maria
+ * @author maria, Justin
  */
 public class HtmlValidator {
     Queue<HtmlTag> tags;
