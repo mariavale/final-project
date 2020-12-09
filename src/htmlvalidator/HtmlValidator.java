@@ -6,6 +6,7 @@
 package htmlvalidator;
 
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  *
@@ -33,9 +34,29 @@ public class HtmlValidator {
         
     }
     
-    public boolean validate() {
-        boolean valid = true;
+    
+    
+    
+        /*
+    Examine each tag from the queue, and if it is an opening tag 
+    that requires a closing tag, push it onto a stack and increase indentation. 
+    If it is a closing tag, compare it to the tag on top of the stack. 
+    If the two tags match, pop the top tag of the stack and decrease indentation
+    If they don't match, it is an error. Any tags remaining on the stack at the end are errors.
+    */
+    
+    public void validate(){
         
-        return valid;
+        Stack<HtmlTag> stack = new Stack<>();
+        
+        
+        if(tags.peek().isOpenTag()){
+            stack.push(tags.remove());
+        }else if(tags.peek() == stack.firstElement()){
+            stack.pop();
+        }else{
+            //error 
+        }
+        
     }
 }
