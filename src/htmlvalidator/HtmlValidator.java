@@ -54,14 +54,20 @@ public class HtmlValidator {
         
         Stack<HtmlTag> stack = new Stack<>();
         
-        
+        for(int i = 0;i<tags.size();i++){
         if(tags.peek().isOpenTag()){
             stack.push(tags.remove());
         }else if(tags.peek() == stack.firstElement()){
             stack.pop();
-        }else{
-            //error 
         }
+        }
+        
+        for(int i = 0;i<stack.size();i++){
+            
+            System.out.println("ERROR: " + tags.remove());
+        }
+            
+        
         
     }
 }
