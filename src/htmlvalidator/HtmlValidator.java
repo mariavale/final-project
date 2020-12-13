@@ -10,7 +10,7 @@ import java.util.Stack;
 
 /**
  *
- * @author maria, Justin
+ * @author Maria, Justin
  */
 public class HtmlValidator {
     Queue<HtmlTag> tags;
@@ -54,20 +54,16 @@ public class HtmlValidator {
         
         Stack<HtmlTag> stack = new Stack<>();
         
-        for(int i = 0;i<tags.size();i++){
-        if(tags.peek().isOpenTag()){
-            stack.push(tags.remove());
-        }else if(tags.peek() == stack.firstElement()){
-            stack.pop();
-        }
+        for(int i = 0; i < tags.size(); i++){
+            if(tags.peek().isOpenTag()){
+                stack.push(tags.remove());
+            } else if(tags.peek() == stack.firstElement()){
+                stack.pop();
+            }
         }
         
-        for(int i = 0;i<stack.size();i++){
-            
+        for(int i = 0; i < stack.size(); i++){
             System.out.println("ERROR: " + tags.remove());
-        }
-            
-        
-        
+        } 
     }
 }
