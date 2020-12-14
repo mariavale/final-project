@@ -63,7 +63,7 @@ public class HtmlValidator {
         }
         
         for(int i = 0; i < stack.size(); i++){
-            System.out.println("ERROR: " + tags.remove());
+            System.out.println("ERROR: " + stack.pop());
         } 
     }
 }
