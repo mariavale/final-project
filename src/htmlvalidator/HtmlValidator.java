@@ -50,20 +50,30 @@ public class HtmlValidator {
     If they don't match, it is an error. Any tags remaining on the stack at the end are errors.
     */
     
+    // call self closing
+    
     public void validate(){
         
         Stack<HtmlTag> stack = new Stack<>();
-        
-        for(int i = 0; i < tags.size(); i++){
-            if(tags.peek().isOpenTag()){
+        int tsize = tags.size();
+        //String spacing = "";
+        for(int i = 0; i < tsize; i++){
+            if(tags.peek().isSelfClosing()){
+                tags.remove();
+            }
+            else if(tags.peek().isOpenTag()){
                 stack.push(tags.remove());
-            } else if(tags.peek() == stack.firstElement()){
+            } else if(stack.size() > 0 && tags.peek().matches(stack.peek())){
                 stack.pop();
+                tags.remove();
+            }else{
+                System.out.println("Error unexpected: " + tags.remove());
             }
         }
-        
-        for(int i = 0; i < stack.size(); i++){
-            System.out.println("ERROR: " + stack.pop());
+        int size = stack.size();
+        for(int i = 0; i < size; i++){
+            System.out.println("ERROR Unclosed: " + stack.pop());
         } 
     }
 }
+ 
