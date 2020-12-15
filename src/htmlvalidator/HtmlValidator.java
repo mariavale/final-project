@@ -79,6 +79,7 @@ public class HtmlValidator {
         int size = stack.size();
         for(int i = 0; i < size; i++){
             System.out.println("ERROR Unclosed: " + stack.pop());
+            spaces--;
         } 
     }
     
