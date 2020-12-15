@@ -31,6 +31,10 @@ public class HtmlValidator {
         return tags;
     }
     
+    /*
+    * @Param string element 
+    * removes all tags that are equal to element
+    */
     public void removeAll(String element) {
         int size = tags.size();
         for(int i = 0; i < size; i++) {
@@ -43,31 +47,34 @@ public class HtmlValidator {
     
     
     
+
     
-        /*
-    Examine each tag from the queue, and if it is an opening tag 
-    that requires a closing tag, push it onto a stack and increase indentation. 
-    If it is a closing tag, compare it to the tag on top of the stack. 
-    If the two tags match, pop the top tag of the stack and decrease indentation
-    If they don't match, it is an error. Any tags remaining on the stack at the end are errors.
+    
+    /*
+    * Validate method
+    * Validates html code, prints out code with any errors detected
     */
-    
-    // call self closing
-    
     public void validate(){
         
         Stack<HtmlTag> stack = new Stack<>();
+        
         spaces = 0;
         int tsize = tags.size();
-        //String spacing = "";
+        
         for(int i = 0; i < tsize; i++){
+            
+            //checks if tag is self closing
             if(tags.peek().isSelfClosing()){
                 addSpacing();
                 System.out.println(tags.remove());
+                
+            //checks if tag is an open tag
             } else if(tags.peek().isOpenTag()){
                 addSpacing();
                 System.out.println(stack.push(tags.remove()));
                 spaces++;
+                
+            //checking if there is corresponding closing tag with openeing ta
             } else if(stack.size() > 0 && tags.peek().matches(stack.peek())){
                 stack.pop();
                 spaces--;
@@ -77,6 +84,8 @@ public class HtmlValidator {
                 System.out.println("ERROR Unexpected: " + tags.remove());
             }
         }
+
+        //printing out all other errors not shown during runtime of validating
         int size = stack.size();
         for(int i = 0; i < size; i++){
             System.out.println("ERROR Unclosed: " + stack.pop());
@@ -84,6 +93,9 @@ public class HtmlValidator {
         } 
     }
     
+    /*
+    * Method for visual spacing when printing out html code
+    */
     public void addSpacing() {
         for(int i = 0; i < spaces; i++) {
             System.out.print("  ");
