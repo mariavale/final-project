@@ -73,7 +73,7 @@ public class HtmlValidator {
                 addSpacing();
                 System.out.println(tags.remove());
             } else {
-                System.out.println("Error unexpected: " + tags.remove());
+                System.out.println("ERROR Unexpected: " + tags.remove());
             }
         }
         int size = stack.size();
