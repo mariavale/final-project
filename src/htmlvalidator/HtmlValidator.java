@@ -69,9 +69,9 @@ public class HtmlValidator {
                 spaces++;
             } else if(stack.size() > 0 && tags.peek().matches(stack.peek())){
                 stack.pop();
+                spaces--;
                 addSpacing();
                 System.out.println(tags.remove());
-                spaces--;
             } else {
                 System.out.println("Error unexpected: " + tags.remove());
             }
