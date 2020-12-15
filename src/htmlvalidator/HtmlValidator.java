@@ -5,6 +5,7 @@
  */
 package htmlvalidator;
 
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -13,14 +14,17 @@ import java.util.Stack;
  * @author Maria, Justin
  */
 public class HtmlValidator {
-    Queue<HtmlTag> tags;
+    Queue<HtmlTag> tags = new LinkedList<>();
     int spaces;
     
     public HtmlValidator() {
     }
     
-    public HtmlValidator(Queue<HtmlTag> tags) {
-        this.tags = tags;
+    public HtmlValidator(Queue<HtmlTag> ntags) {
+        int size = ntags.size();
+        for(int i = 0; i < size;i++){
+            tags.add(ntags.remove());
+        }
     }
     
     public void addTag(HtmlTag tag) {
