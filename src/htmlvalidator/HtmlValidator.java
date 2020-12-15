@@ -35,7 +35,7 @@ public class HtmlValidator {
         int size = tags.size();
         for(int i = 0; i < size; i++) {
             HtmlTag tag = tags.remove();
-            if(!element.equals(tag.toString())) {
+            if(!tag.toString().contains(element)) {
                 tags.add(tag);
             }
         }
