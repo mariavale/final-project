@@ -14,6 +14,7 @@ import java.util.Stack;
  */
 public class HtmlValidator {
     Queue<HtmlTag> tags;
+    int spaces;
     
     public HtmlValidator() {
     }
@@ -55,18 +56,23 @@ public class HtmlValidator {
     public void validate(){
         
         Stack<HtmlTag> stack = new Stack<>();
+        spaces = 0;
         int tsize = tags.size();
         //String spacing = "";
         for(int i = 0; i < tsize; i++){
             if(tags.peek().isSelfClosing()){
-                tags.remove();
-            }
-            else if(tags.peek().isOpenTag()){
-                stack.push(tags.remove());
+                addSpacing();
+                System.out.println(tags.remove());
+            } else if(tags.peek().isOpenTag()){
+                addSpacing();
+                System.out.println(stack.push(tags.remove()));
+                spaces++;
             } else if(stack.size() > 0 && tags.peek().matches(stack.peek())){
                 stack.pop();
-                tags.remove();
-            }else{
+                addSpacing();
+                System.out.println(tags.remove());
+                spaces--;
+            } else {
                 System.out.println("Error unexpected: " + tags.remove());
             }
         }
@@ -74,6 +80,12 @@ public class HtmlValidator {
         for(int i = 0; i < size; i++){
             System.out.println("ERROR Unclosed: " + stack.pop());
         } 
+    }
+    
+    public void addSpacing() {
+        for(int i = 0; i < spaces; i++) {
+            System.out.print("  ");
+        }
     }
 }
  
