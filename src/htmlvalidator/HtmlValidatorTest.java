@@ -19,18 +19,40 @@ public class HtmlValidatorTest {
         tags.add(new HtmlTag("head", true));
         tags.add(new HtmlTag("title", true));
         tags.add(new HtmlTag("head", true));
-        tags.add(new HtmlTag("b", true));      // <b>
-        tags.add(new HtmlTag("b", false));     // </b>
-        tags.add(new HtmlTag("br"));           // <br/>
+        tags.add(new HtmlTag("b", true));
+        tags.add(new HtmlTag("b", false));
+        tags.add(new HtmlTag("i", true));
+        tags.add(new HtmlTag("i", false));
+        tags.add(new HtmlTag("br"));
         tags.add(new HtmlTag("title", false));
         tags.add(new HtmlTag("head", false));
         tags.add(new HtmlTag("html", false));
         
-        System.out.println(tags);
-        
         HtmlValidator validator = new HtmlValidator(tags);
+        System.out.println(validator.getTags());
         validator.validate();
+        
+        System.out.println("-----------------------");
+        System.out.println("Remove 'head'");
         validator.removeAll("head");
+        System.out.println(validator.getTags());
+        validator.validate();
+        
+        System.out.println("-----------------------");
+        System.out.println("Remove 'br'");
+        validator.removeAll("br");
+        System.out.println(validator.getTags());
+        validator.validate();
+        
+        System.out.println("-----------------------");
+        System.out.println("Remove 'b'");
+        validator.removeAll("b");
+        System.out.println(validator.getTags());
+        validator.validate();
+        
+        System.out.println("-----------------------");
+        System.out.println("Remove 'grg'"); //removes nothing
+        validator.removeAll("grg");
         System.out.println(validator.getTags());
         validator.validate();
     }
