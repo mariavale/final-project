@@ -71,14 +71,17 @@ public class HtmlValidator {
             //checks if tag is self closing
             if(tags.peek().isSelfClosing()){
                 addSpacing();
-                System.out.println(tags.add(tags.remove()));
+                HtmlTag tag = tags.remove();
+                System.out.println(tag);
+                tags.add(tag);
                 
             //checks if tag is an open tag
             } else if(tags.peek().isOpenTag()){
                 addSpacing();
                 HtmlTag tag = tags.remove();
-                System.out.println(stack.push(tag));
+                stack.push(tag);
                 tags.add(tag);
+                System.out.println(tag);
                 
                 spaces++;
                 
@@ -87,9 +90,13 @@ public class HtmlValidator {
                 stack.pop();
                 spaces--;
                 addSpacing();
-                System.out.println(tags.add(tags.remove()));
+                HtmlTag tag = tags.remove();
+                tags.add(tag);
+                System.out.println(tag);
             } else {
-                System.out.println("ERROR Unexpected: " + tags.add(tags.remove()));
+                HtmlTag tag = tags.remove();
+                tags.add(tag);
+                System.out.println("ERROR Unexpected: " + tag);
             }
         }
 

@@ -29,7 +29,7 @@ public class HtmlValidatorTest {
         System.out.println(tags);
         
         HtmlValidator validator = new HtmlValidator(tags);
-        //validator.validate();
+        validator.validate();
         validator.removeAll("head");
         System.out.println(tags);
         validator.validate();
