@@ -14,7 +14,7 @@ import java.util.*;
 public class HtmlValidatorTest {
     public static void main(String[] args) {
         // <b>Hi</b><br/>
-        Queue<HtmlTag> tags = new LinkedList<HtmlTag>();
+        Queue<HtmlTag> tags = new LinkedList<>();
         tags.add(new HtmlTag("html", true));
         tags.add(new HtmlTag("head", true));
         tags.add(new HtmlTag("title", true));
@@ -31,7 +31,7 @@ public class HtmlValidatorTest {
         HtmlValidator validator = new HtmlValidator(tags);
         validator.validate();
         validator.removeAll("head");
-        System.out.println(tags);
+        System.out.println(validator.getTags());
         validator.validate();
     }
 }
