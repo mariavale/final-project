@@ -18,10 +18,14 @@ public class HtmlValidator {
     Queue<HtmlTag> tagsCopy = new LinkedList<>();
     int spaces;
     
-    public HtmlValidator() {
-    }
+    public HtmlValidator() {}
     
     public HtmlValidator(Queue<HtmlTag> ntags) {
+        
+        if(ntags == null){
+            throw new IllegalArgumentException("Queue is null");
+        }
+        
         int size = ntags.size();
         for(int i = 0; i < size;i++){
             tags.add(ntags.remove());
@@ -29,6 +33,11 @@ public class HtmlValidator {
     }
     
     public void addTag(HtmlTag tag) {
+        
+        if(tag == null){
+            throw new IllegalArgumentException("Tag is null");
+        }
+        
         tags.add(tag);
     }
     
@@ -41,6 +50,11 @@ public class HtmlValidator {
     * removes all tags that are equal to element
     */
     public void removeAll(String element) {
+        
+        if(element == null){
+            throw new IllegalArgumentException("Element is null");
+        }
+        
         int size = tags.size();
         for(int i = 0; i < size; i++) {
             HtmlTag tag = tags.remove();
@@ -49,12 +63,7 @@ public class HtmlValidator {
             }
         }
     }
-    
-    
-    
 
-    
-    
     /*
     * Validate method
     * Validates html code, prints out code with any errors detected
@@ -78,6 +87,7 @@ public class HtmlValidator {
             //checks if tag is an open tag
             } else if(tags.peek().isOpenTag()){
                 addSpacing();
+                
                 HtmlTag tag = tags.remove();
                 stack.push(tag);
                 tags.add(tag);

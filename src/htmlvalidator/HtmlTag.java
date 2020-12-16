@@ -17,6 +17,10 @@ public class HtmlTag {
     private final String element;
     private final boolean isOpenTag;
     
+     public Object clone() throws CloneNotSupportedException {
+        HtmlTag tags = (HtmlTag) super.clone();
+        return tags;
+     }
     /** Constructs an HTML "opening" tag with the given element (e.g. "table").
       * Throws a NullPointerException if element is null. */
     public HtmlTag(String element) {
