@@ -15,6 +15,7 @@ import java.util.Stack;
  */
 public class HtmlValidator {
     Queue<HtmlTag> tags = new LinkedList<>();
+    Queue<HtmlTag> tagsCopy = new LinkedList<>();
     int spaces;
     
     public HtmlValidator() {
@@ -70,12 +71,15 @@ public class HtmlValidator {
             //checks if tag is self closing
             if(tags.peek().isSelfClosing()){
                 addSpacing();
-                System.out.println(tags.remove());
+                System.out.println(tags.add(tags.remove()));
                 
             //checks if tag is an open tag
             } else if(tags.peek().isOpenTag()){
                 addSpacing();
-                System.out.println(stack.push(tags.remove()));
+                HtmlTag tag = tags.remove();
+                System.out.println(stack.push(tag));
+                tags.add(tag);
+                
                 spaces++;
                 
             //checking if there is corresponding closing tag with openeing ta
@@ -83,9 +87,9 @@ public class HtmlValidator {
                 stack.pop();
                 spaces--;
                 addSpacing();
-                System.out.println(tags.remove());
+                System.out.println(tags.add(tags.remove()));
             } else {
-                System.out.println("ERROR Unexpected: " + tags.remove());
+                System.out.println("ERROR Unexpected: " + tags.add(tags.remove()));
             }
         }
 
