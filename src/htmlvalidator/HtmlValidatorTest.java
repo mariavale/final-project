@@ -20,9 +20,9 @@ public class HtmlValidatorTest {
         tags.add(new HtmlTag("title", true));
         tags.add(new HtmlTag("head", true));
         tags.add(new HtmlTag("b", true));
-        tags.add(new HtmlTag("b", false));
         tags.add(new HtmlTag("i", true));
         tags.add(new HtmlTag("i", false));
+        tags.add(new HtmlTag("b", false));
         tags.add(new HtmlTag("br"));
         tags.add(new HtmlTag("title", false));
         tags.add(new HtmlTag("head", false));
